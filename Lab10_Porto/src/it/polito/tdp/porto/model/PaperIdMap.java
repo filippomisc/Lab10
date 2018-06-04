@@ -15,7 +15,7 @@ private Map<Integer, Paper> papers;
 		return this.papers.get(id);
 	}
 	
-	public Paper getAuthor(Paper p) {
+	public Paper getPaper(Paper p) {
 		Paper old = papers.get(p.getEprintid());
 		if(old==null) {
 			this.papers.put(p.getEprintid(), p);
