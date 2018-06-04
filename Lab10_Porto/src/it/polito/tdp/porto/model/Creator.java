@@ -3,45 +3,76 @@ package it.polito.tdp.porto.model;
 public class Creator {
 
 	private int eprintid;
+	private Paper paper;
+	private Author author;
 	private int authorid;
 	private int creatorid;
 	
 
-	public Creator(int creatorid, int eprintid, int authorid) {
+	public Creator(int creatorid, Author author, Paper paper) {
 		super();
-		this.eprintid = eprintid;
-		this.authorid = authorid;
+		this.paper = paper;
+		this.author = author;
 		this.creatorid = creatorid;
-	}
-	
-	public int getCreatorid() {
-		return creatorid;
 	}
 
-	public void setCreatorid(int creatorid) {
-		this.creatorid = creatorid;
-	}
 
 	public int getEprintid() {
 		return eprintid;
 	}
 
+
 	public void setEprintid(int eprintid) {
 		this.eprintid = eprintid;
 	}
+
+
+	public Paper getPaper() {
+		return paper;
+	}
+
+
+	public void setPaper(Paper paper) {
+		this.paper = paper;
+	}
+
+
+	public Author getAuthor() {
+		return author;
+	}
+
+
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
+
 
 	public int getAuthorid() {
 		return authorid;
 	}
 
+
 	public void setAuthorid(int authorid) {
 		this.authorid = authorid;
 	}
 
+
+	public int getCreatorid() {
+		return creatorid;
+	}
+
+
+	public void setCreatorid(int creatorid) {
+		this.creatorid = creatorid;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Creator [eprintid=" + eprintid + ", authorid=" + authorid + ", creatorid=" + creatorid + "]";
+		return "Creator [eprintid=" + eprintid + ", paper=" + paper + ", author=" + author + ", authorid=" + authorid
+				+ ", creatorid=" + creatorid + "]";
 	}
+
 
 	@Override
 	public int hashCode() {
@@ -50,6 +81,7 @@ public class Creator {
 		result = prime * result + creatorid;
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -64,6 +96,7 @@ public class Creator {
 			return false;
 		return true;
 	}
-
+	
+	
 	
 }
