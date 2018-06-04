@@ -2,12 +2,16 @@ package it.polito.tdp.porto;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import it.polito.tdp.porto.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 
 public class PortoController {
+	
+	private Model m;
 
     @FXML
     private ResourceBundle resources;
@@ -40,5 +44,9 @@ public class PortoController {
         assert boxSecondo != null : "fx:id=\"boxSecondo\" was not injected: check your FXML file 'Porto.fxml'.";
         assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Porto.fxml'.";
 
+    }
+    
+    void SetModel(Model model) {
+    	m=model;
     }
 }
