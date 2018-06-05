@@ -8,6 +8,8 @@ import java.util.*;
 
 import it.polito.tdp.porto.model.Author;
 import it.polito.tdp.porto.model.AuthorIdMap;
+import it.polito.tdp.porto.model.Creator;
+import it.polito.tdp.porto.model.CreatorIdMap;
 import it.polito.tdp.porto.model.Paper;
 import it.polito.tdp.porto.model.PaperIdMap;
 
@@ -139,6 +141,49 @@ public class PortoDAO {
 			conn.close();
 			
 			return articoli;
+
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			throw new RuntimeException("Errore Db");
+		}
+	}
+	
+public List<Creator> getAllCreator(CreatorIdMap cIdMap, AuthorIdMap aIdMap, PaperIdMap pIdMap){
+		
+		final String sql = "SELECT * FROM creator";
+		
+		List<Creator> creatori = new ArrayList<>();
+
+		try {
+			Connection conn = DBConnect.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+
+			ResultSet rs = st.executeQuery();
+
+			int counter = 0;
+
+			while (rs.next()) {
+				
+				
+				Author author = aIdMap.getAuthorByID(rs.getInt("authorid"));
+				Paper paper = pIdMap.getPaperByID(rs.getInt("eprintid"));
+				
+				Creator creatore = new Creator(counter, author, paper);
+				
+//				creator.add(aIdMap.getAuthor(autore));
+				
+				creatori.add(creatore);
+				counter++;
+				
+				author.getCreators().add(cIdMap.getCreator(creatore));
+				paper.getCreators().add(cIdMap.getCreator(creatore));
+				
+			
+			}
+
+			conn.close();
+			
+			return creatori;
 
 		} catch (SQLException e) {
 			// e.printStackTrace();

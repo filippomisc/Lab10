@@ -2,11 +2,11 @@ package it.polito.tdp.porto.model;
 
 import java.util.*;
 
-public class CreatorIdMAp {
+public class CreatorIdMap {
 
 private Map<Integer, Creator> creators;
 	
-	public CreatorIdMAp() {
+	public CreatorIdMap() {
 		this.creators = new HashMap<>();
 	}	
 

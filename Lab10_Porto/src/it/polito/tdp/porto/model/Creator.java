@@ -2,10 +2,10 @@ package it.polito.tdp.porto.model;
 
 public class Creator {
 
-	private int eprintid;
+	//private int eprintid;
 	private Paper paper;
 	private Author author;
-	private int authorid;
+	//private int authorid;
 	private int creatorid;
 	
 
@@ -18,12 +18,12 @@ public class Creator {
 
 
 	public int getEprintid() {
-		return eprintid;
+		return this.paper.getEprintid();
 	}
 
 
 	public void setEprintid(int eprintid) {
-		this.eprintid = eprintid;
+		this.paper.setEprintid(eprintid);
 	}
 
 
@@ -48,12 +48,12 @@ public class Creator {
 
 
 	public int getAuthorid() {
-		return authorid;
+		return this.author.getId();
 	}
 
 
 	public void setAuthorid(int authorid) {
-		this.authorid = authorid;
+		this.author.setId(authorid);
 	}
 
 
@@ -69,7 +69,7 @@ public class Creator {
 
 	@Override
 	public String toString() {
-		return "Creator [eprintid=" + eprintid + ", paper=" + paper + ", author=" + author + ", authorid=" + authorid
+		return "Creator [eprintid=" + this.getEprintid() + ", paper=" + paper + ", author=" + author + ", authorid=" + this.getAuthorid()
 				+ ", creatorid=" + creatorid + "]";
 	}
 
