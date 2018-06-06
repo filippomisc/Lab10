@@ -192,4 +192,50 @@ public List<Creator> getAllCreator(CreatorIdMap cIdMap, AuthorIdMap aIdMap, Pape
 	}
 
 
+public List<Author> getCollaborator(AuthorIdMap aIdMap, Author a){
+	
+	final String sql = "SELECT DISTINCT author.* " + 
+					   "FROM creator , author " + 
+					   "WHERE creator.authorid=author.id " + 
+					   "AND creator.eprintid IN (SELECT creator.eprintid " + 
+									 			"FROM author, creator " + 
+									 			"WHERE author.id=? " + 
+									 			"AND author.id = creator.authorid)";
+	
+	List<Author> collaboratori = new ArrayList<>();
+
+	try {
+		Connection conn = DBConnect.getConnection();
+		PreparedStatement st = conn.prepareStatement(sql);
+		st.setInt(1, a.getId());
+		ResultSet rs = st.executeQuery();
+		
+
+
+		while (rs.next()) {
+			
+			
+			Author collaboratore = aIdMap.getAuthorByID(rs.getInt("id"));
+			
+			if(!collaboratore.equals(a))
+				
+//			creator.add(aIdMap.getAuthor(autore));
+			
+			collaboratori.add(aIdMap.getAuthor(collaboratore));
+			
+		
+		}
+
+		conn.close();
+		
+		return collaboratori;
+
+	} catch (SQLException e) {
+		 e.printStackTrace();
+		throw new RuntimeException("Errore Db");
+	}
+}
+
+
+
 }
