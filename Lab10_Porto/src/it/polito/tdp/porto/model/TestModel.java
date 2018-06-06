@@ -1,11 +1,18 @@
 package it.polito.tdp.porto.model;
 
+import java.util.List;
+
 public class TestModel {
 
 	public static void main(String[] args) {
 		
-		Model model = new Model();
-		System.out.println("TODO: write a Model class and test it!");
+		Model m = new Model();
+		
+		m.createGraph();
+		
+	
+		System.out.println(m.getCollaboratoriDiAutore(1847).toString());
+		
 	}
 
 }

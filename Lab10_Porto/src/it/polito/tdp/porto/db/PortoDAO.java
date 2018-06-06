@@ -55,7 +55,7 @@ public class PortoDAO {
 	 */
 	public List<Author> getAllAuthors(AuthorIdMap aIdMap){
 		
-		final String sql = "SELECT * FROM author";
+		final String sql = "SELECT * FROM author ORDER BY lastname";
 		
 		List<Author> autori = new ArrayList<>();
 

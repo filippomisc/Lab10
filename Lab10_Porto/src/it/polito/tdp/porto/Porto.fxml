@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="it.polito.tdp.porto.PortoController">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.porto.PortoController">
    <top>
       <Label text="Laboratorio 10 - Porto" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -26,8 +25,8 @@
             <GridPane hgap="5.0" vgap="5.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.0" minWidth="10.0" prefWidth="96.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.0" minWidth="10.0" prefWidth="212.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="310.0" minWidth="10.0" prefWidth="310.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="129.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -36,10 +35,10 @@
                <children>
                   <Label text="Primo autore" />
                   <Label text="Secondo autore" GridPane.rowIndex="1" />
-                  <ComboBox fx:id="boxPrimo" prefWidth="150.0" GridPane.columnIndex="1" />
-                  <ComboBox fx:id="boxSecondo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" onAction="#handleCoautori" text="Trova co-autori" GridPane.columnIndex="2" />
-                  <Button mnemonicParsing="false" onAction="#handleSequenza" text="Sequenza articoli" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="boxPrimo" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="boxSecondo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="btnCoAutori" mnemonicParsing="false" onAction="#handleCoautori" prefHeight="35.0" prefWidth="123.0" text="Trova co-autori" GridPane.columnIndex="2" />
+                  <Button fx:id="btnSequenza" mnemonicParsing="false" onAction="#handleSequenza" text="Sequenza articoli" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <TextArea fx:id="txtResult" />
