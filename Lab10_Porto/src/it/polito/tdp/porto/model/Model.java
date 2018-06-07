@@ -2,7 +2,10 @@ package it.polito.tdp.porto.model;
 
 import java.util.*;
 
+import org.jgrapht.GraphPath;
 import org.jgrapht.Graphs;
+import org.jgrapht.alg.interfaces.ShortestPathAlgorithm;
+import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleGraph;
 
@@ -18,10 +21,12 @@ public class Model {
 	private List<Author> authors;
 	private List<Paper> papers;
 	private List<Creator> creators;
+	private GraphPath<Author, DefaultEdge> gp;
 	
 	private AuthorIdMap aIdMap;
 	private PaperIdMap pIdMap;
 	private CreatorIdMap cIdMap;
+
 
 	public Model() {		
 		
@@ -93,4 +98,44 @@ public class Model {
 		
 		return noCoAuthors;
 	}
+
+	public void getShortestPath(Author aUno, Author aDue) {
+		
+		Author a1 = this.aIdMap.getAuthor(aUno);
+		Author a2 = this.aIdMap.getAuthor(aDue);
+		
+		if(a1 == null || a2 == null)
+			throw new RuntimeException("gli autori non sono presenti in memoria");
+		
+		//calcolare lo shortestPath
+		ShortestPathAlgorithm<Author, DefaultEdge> spa = new DijkstraShortestPath<>(this.grafo);
+		
+		gp = spa.getPath(a1, a2);
+		
+		System.out.println("elenco di co-autori collegati: " + gp.toString() + "\n");
+		
+		
+
+	}
+	
+	
+	//PER TEST MODEL
+	public void getShortestPath(int aUno, int aDue) {
+			
+			Author a1 = this.aIdMap.getAuthorByID(aUno);
+			Author a2 = this.aIdMap.getAuthorByID(aDue);
+			
+			if(a1 == null || a2 == null)
+				throw new RuntimeException("gli autori non sono presenti in memoria");
+			
+			//calcolare lo shortestPath
+			ShortestPathAlgorithm<Author, DefaultEdge> spa = new DijkstraShortestPath<>(this.grafo);
+			
+			gp = spa.getPath(a1, a2);
+			
+			System.out.println("elenco di co-autori collegati: " + gp.toString());
+			
+			
+	
+		}
 }

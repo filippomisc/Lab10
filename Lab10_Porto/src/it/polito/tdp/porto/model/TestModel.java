@@ -15,6 +15,7 @@ public class TestModel {
 		
 //		System.out.println(m.get);
 		
+		m.getShortestPath(1847,2041);
 	}
 
 }

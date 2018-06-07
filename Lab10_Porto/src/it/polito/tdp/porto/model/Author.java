@@ -60,7 +60,7 @@ public class Author {
 
 	@Override
 	public String toString() {
-		return id + " " + lastname + " " + firstname + "\n";
+		return id + " " + lastname + " " + firstname;
 	}
 
 	@Override

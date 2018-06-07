@@ -90,6 +90,14 @@ public class PortoController {
 
     @FXML
     void handleSequenza(ActionEvent event) {
+    	
+    	Author a1 = this.boxPrimo.getValue();
+    	Author a2 = this.boxPrimo.getValue();
+    	
+//    	System.out.println(m.getShortestPath(a1,a2));
+    	
+    	
+    	
 
 
     }
