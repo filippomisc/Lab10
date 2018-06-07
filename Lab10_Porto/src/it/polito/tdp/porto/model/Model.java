@@ -81,4 +81,16 @@ public class Model {
 	public List<Author> getCollaboratoriDiAutore(int authorId) {
 		return Graphs.neighborListOf(this.grafo, aIdMap.getAuthorByID(authorId));
 	}
+
+	public List<Author> getNoCoAuthorsOf(Author a) {
+
+		List<Author> noCoAuthors = this.getAuthors();
+		
+		List<Author> autoriDaEscludere = this.getCollaboratoriDiAutore(a);
+		
+		noCoAuthors.removeAll(autoriDaEscludere);//togliamo dalla lista i co-autori
+		noCoAuthors.remove(a);//togliamo dalla lista l'autore sorgente
+		
+		return noCoAuthors;
+	}
 }

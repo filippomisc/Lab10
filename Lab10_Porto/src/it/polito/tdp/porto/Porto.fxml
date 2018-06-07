@@ -36,9 +36,9 @@
                   <Label text="Primo autore" />
                   <Label text="Secondo autore" GridPane.rowIndex="1" />
                   <ComboBox fx:id="boxPrimo" GridPane.columnIndex="1" />
-                  <ComboBox fx:id="boxSecondo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="boxSecondo" disable="true" pickOnBounds="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Button fx:id="btnCoAutori" mnemonicParsing="false" onAction="#handleCoautori" prefHeight="35.0" prefWidth="123.0" text="Trova co-autori" GridPane.columnIndex="2" />
-                  <Button fx:id="btnSequenza" mnemonicParsing="false" onAction="#handleSequenza" text="Sequenza articoli" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Button fx:id="btnSequenza" disable="true" mnemonicParsing="false" onAction="#handleSequenza" text="Sequenza articoli" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <TextArea fx:id="txtResult" />

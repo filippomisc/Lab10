@@ -15,7 +15,8 @@ import javafx.scene.control.TextArea;
 public class PortoController {
 	
 	private Model m;
-	private List<Author> authors;
+	private List<Author> authors1;
+	private List<Author> authors2;
 
     @FXML
     private ResourceBundle resources;
@@ -27,7 +28,7 @@ public class PortoController {
     private ComboBox<Author> boxPrimo;
 
     @FXML
-    private ComboBox<?> boxSecondo;
+    private ComboBox<Author> boxSecondo;
     
     @FXML
     private Button btnCoAutori;
@@ -38,6 +39,7 @@ public class PortoController {
 
     @FXML
     private TextArea txtResult;
+
 
 
     @FXML
@@ -58,30 +60,37 @@ public class PortoController {
     	}
     	
     	this.txtResult.setText("I collaboratore di " + a.getFirstname() + " " + a.getLastname() + " è: \n" + result );
+    
+    	
+    	this.btnSequenza.setDisable(false);
+    	this.boxSecondo.setDisable(false);
     	
     	
     	
     	
-//    	this.txtResult.setText(result.toString());
+    	//PARTE RELATIVA ALL'ESERCIZIO 2
+    	
+    	authors2 = m.getNoCoAuthorsOf(a);
     	
     	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	//serve a resettare la comboBox
-//        this.boxPrimo.getSelectionModel().clearSelection();    
+		this.boxSecondo.getItems().addAll(authors2);
+		
+		
+		
 
+    	
+    
+
+    	
+    	
+    	
+    	
 
     }
 
     @FXML
     void handleSequenza(ActionEvent event) {
+
 
     }
 
@@ -100,7 +109,7 @@ public class PortoController {
     	m.createGraph();//_____________________________________________________****
     	
     	//bisogna settare la comboBox all'avvio dell'interfaccia grafica
-    	authors = m.getAuthors();
-		this.boxPrimo.getItems().addAll(authors);
+    	authors1 = m.getAuthors();
+		this.boxPrimo.getItems().addAll(authors1);
     }
 }

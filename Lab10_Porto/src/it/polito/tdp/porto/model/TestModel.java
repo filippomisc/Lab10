@@ -13,6 +13,8 @@ public class TestModel {
 	
 		System.out.println(m.getCollaboratoriDiAutore(1847).toString());
 		
+//		System.out.println(m.get);
+		
 	}
 
 }
