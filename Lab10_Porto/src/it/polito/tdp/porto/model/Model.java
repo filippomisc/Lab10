@@ -151,7 +151,7 @@ public class Model {
 	
 	
 	
-	public List<Paper> getArticoloInComune(Author authorSorgrnte, Author authorDestinazione) {
+	public List<Paper> getArticoliInComune(Author authorSorgrnte, Author authorDestinazione) {
 		
 		List<Paper> articoliToStamp = new ArrayList<>();
 		
@@ -173,7 +173,7 @@ public class Model {
 			}
 	
 	//PER TEST MODEL - metodo bovino con un for con indice i
-	public List<Paper> getArticoloInComune(int iDauthorSorgrnte, int iDauthorDestinazione) {
+	public List<Paper> getArticoliInComune(int iDauthorSorgrnte, int iDauthorDestinazione) {
 		
 		List<Paper> articoliToStamp = new ArrayList<>();
 		

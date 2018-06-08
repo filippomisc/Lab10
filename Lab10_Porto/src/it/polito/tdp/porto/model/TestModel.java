@@ -20,7 +20,7 @@ public class TestModel {
 		
 		m.getShortestPath(iDSorgente,iDDestinazione);
 		
-		m.getArticoloInComune(iDSorgente, iDDestinazione);
+		m.getArticoliInComune(iDSorgente, iDDestinazione);
 		
 		
 	}

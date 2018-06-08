@@ -97,7 +97,7 @@ public class PortoController {
     	Author a1 = this.boxPrimo.getValue();
     	Author a2 = this.boxSecondo.getValue();
     	
-    	List<Paper> papers = m.getArticoloInComune(a1, a2);
+    	List<Paper> papers = m.getArticoliInComune(a1, a2);
     	
     	for(Paper p : papers) {
     		this.txtResult.appendText(p.toStringClear());
