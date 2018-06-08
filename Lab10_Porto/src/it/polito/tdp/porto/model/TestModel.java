@@ -15,7 +15,14 @@ public class TestModel {
 		
 //		System.out.println(m.get);
 		
-		m.getShortestPath(1847,2041);
+		int iDSorgente = 1847;
+		int iDDestinazione = 2041;
+		
+		m.getShortestPath(iDSorgente,iDDestinazione);
+		
+		m.getArticoloInComune(iDSorgente, iDDestinazione);
+		
+		
 	}
 
 }

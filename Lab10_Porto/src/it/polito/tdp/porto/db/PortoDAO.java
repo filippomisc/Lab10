@@ -16,35 +16,35 @@ import it.polito.tdp.porto.model.PaperIdMap;
 public class PortoDAO {
 
 	/*
-	 * Dato l'id ottengo l'autore. inutile
+	 * Dato l'id ottengo l'autore.
 	 */
-//	public Author getAutore(AuthorIdMap aIdMap, int id) {
-//
-//		final String sql = "SELECT * FROM author where id=?";
-//
-//		try {
-//			Connection conn = DBConnect.getConnection();
-//			PreparedStatement st = conn.prepareStatement(sql);
-//			st.setInt(1, id);
-//
-//			ResultSet rs = st.executeQuery();
-//
-//			if (rs.next()) {
-//
-//				
-//				
-//				
-//				Author autore = new Author(rs.getInt("id"), rs.getString("lastname"), rs.getString("firstname"));
-//				return autore;
-//			}
-//
-//			return null;
-//
-//		} catch (SQLException e) {
-//			// e.printStackTrace();
-//			throw new RuntimeException("Errore Db");
-//		}
-//	}
+	public Author getAutore(AuthorIdMap aIdMap, int id) {
+
+		final String sql = "SELECT * FROM author where id=?";
+
+		try {
+			Connection conn = DBConnect.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setInt(1, id);
+
+			ResultSet rs = st.executeQuery();
+
+			if (rs.next()) {
+
+				
+				
+				
+				Author autore = new Author(rs.getInt("id"), rs.getString("lastname"), rs.getString("firstname"));
+				return autore;
+			}
+
+			return null;
+
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			throw new RuntimeException("Errore Db");
+		}
+	}
 	
 	
 	
@@ -84,33 +84,62 @@ public class PortoDAO {
 	}
 
 	/*
-	 * Dato l'id ottengo l'articolo. inutile
+	 * Dato l'id ottengo l'articolo.
 	 */
-//	public Paper getArticolo(int eprintid) {
-//
-//		final String sql = "SELECT * FROM paper where eprintid=?";
-//
-//		try {
-//			Connection conn = DBConnect.getConnection();
-//			PreparedStatement st = conn.prepareStatement(sql);
-//			st.setInt(1, eprintid);
-//
-//			ResultSet rs = st.executeQuery();
-//
-//			if (rs.next()) {
-//				Paper paper = new Paper(rs.getInt("eprintid"), rs.getString("title"), rs.getString("issn"),
-//						rs.getString("publication"), rs.getString("type"), rs.getString("types"));
-//				return paper;
-//			}
-//
-//			return null;
-//
-//		} catch (SQLException e) {
-//			 e.printStackTrace();
-//			throw new RuntimeException("Errore Db");
-//		}
-//	}
+	public Paper getArticolo(int eprintid) {
+
+		final String sql = "SELECT * FROM paper where eprintid=?";
+
+		try {
+			Connection conn = DBConnect.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setInt(1, eprintid);
+
+			ResultSet rs = st.executeQuery();
+
+			if (rs.next()) {
+				Paper paper = new Paper(rs.getInt("eprintid"), rs.getString("title"), rs.getString("issn"),
+						rs.getString("publication"), rs.getString("type"), rs.getString("types"));
+				return paper;
+			}
+
+			return null;
+
+		} catch (SQLException e) {
+			 e.printStackTrace();
+			throw new RuntimeException("Errore Db");
+		}
+	}
 	
+	public Paper getArticoloInComune (Author a1, Author a2) {
+
+		final String sql = "select distinct paper.eprintid, title, issn, publication, type, types " + 
+				"from paper, creator " + 
+				"where creator.eprintid in (select creator.eprintid from creator where creator.authorid=?) " + 
+				"  and creator.eprintid in (select creator.eprintid from creator where creator.authorid=?) " + 
+				"  and paper.eprintid=creator.eprintid " + 
+				"limit 1";
+
+		try {
+			Connection conn = DBConnect.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setInt(1, a1.getId());
+			st.setInt(2, a2.getId());
+
+			ResultSet rs = st.executeQuery();
+
+			if (rs.next()) {
+				Paper paper = new Paper(rs.getInt("eprintid"), rs.getString("title"), rs.getString("issn"),rs.getString("publication"), rs.getString("type"), rs.getString("types"));
+				return paper;
+			}
+
+			return null;
+
+		} catch (SQLException e) {
+			 e.printStackTrace();
+			throw new RuntimeException("Errore Db");
+		}
+	}
 	
 	/**
 	 * metodo che aggiunge ad una lista tutti gli articoli del DB

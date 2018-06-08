@@ -5,6 +5,7 @@ import java.util.*;
 import it.polito.tdp.porto.model.Author;
 import it.polito.tdp.porto.model.AuthorIdMap;
 import it.polito.tdp.porto.model.CreatorIdMap;
+import it.polito.tdp.porto.model.Paper;
 import it.polito.tdp.porto.model.PaperIdMap;
 
 public class TestPortoDAO {
@@ -31,6 +32,9 @@ public class TestPortoDAO {
 		System.out.println(String.format("collaboratori di %s %s: \n", a.getFirstname(), a.getLastname()));
 		System.out.println(coll.toString());
 		
+		Paper p = dao.getArticoloInComune(aIdMap.getAuthorByID(2236), aIdMap.getAuthorByID(2041));
+		
+		System.out.println("articolo in comune di 2236 e 2041: " + p.toString());
 	}
 
 }

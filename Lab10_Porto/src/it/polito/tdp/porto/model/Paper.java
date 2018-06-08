@@ -91,6 +91,26 @@ public class Paper {
 				+ ", type=" + type + ", types=" + types + "]";
 	}
 
+	public String toStringClear() {
+	
+		StringBuilder risultato = new StringBuilder();
+				
+		risultato.append("ID ARTICLE: " + this.eprintid + "\n");
+		
+		risultato.append("TITLE: " + this.title + "\n");
+		
+		risultato.append("ISSN: " + this.issn + "\n");
+		
+		risultato.append("TYPE: " + this.type + "\n");
+		
+		risultato.append("TYPES: " + this.types + "\n");
+		
+		risultato.append("PUBLICATION: " + this.publication + "\n");
+		
+		risultato.append("\n");
+		
+		return risultato.toString();
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

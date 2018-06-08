@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import it.polito.tdp.porto.model.Author;
 import it.polito.tdp.porto.model.Model;
+import it.polito.tdp.porto.model.Paper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -91,10 +92,17 @@ public class PortoController {
     @FXML
     void handleSequenza(ActionEvent event) {
     	
-    	Author a1 = this.boxPrimo.getValue();
-    	Author a2 = this.boxPrimo.getValue();
+    	this.txtResult.clear();
     	
-//    	System.out.println(m.getShortestPath(a1,a2));
+    	Author a1 = this.boxPrimo.getValue();
+    	Author a2 = this.boxSecondo.getValue();
+    	
+    	List<Paper> papers = m.getArticoloInComune(a1, a2);
+    	
+    	for(Paper p : papers) {
+    		this.txtResult.appendText(p.toStringClear());
+    	}
+    	
     	
     	
     	

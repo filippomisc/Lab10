@@ -21,7 +21,7 @@ public class Model {
 	private List<Author> authors;
 	private List<Paper> papers;
 	private List<Creator> creators;
-	private GraphPath<Author, DefaultEdge> gp;
+	private GraphPath<Author, DefaultEdge> path;
 	
 	private AuthorIdMap aIdMap;
 	private PaperIdMap pIdMap;
@@ -99,28 +99,32 @@ public class Model {
 		return noCoAuthors;
 	}
 
-	public void getShortestPath(Author aUno, Author aDue) {
+	public List<Author> getShortestPath(Author authorSorgrnte, Author authorDestinazione) {
 		
-		Author a1 = this.aIdMap.getAuthor(aUno);
-		Author a2 = this.aIdMap.getAuthor(aDue);
+		Author aS = this.aIdMap.getAuthor(authorSorgrnte);
+		Author aD = this.aIdMap.getAuthor(authorDestinazione);
 		
-		if(a1 == null || a2 == null)
+		if(aS == null || aD == null)
 			throw new RuntimeException("gli autori non sono presenti in memoria");
 		
 		//calcolare lo shortestPath
 		ShortestPathAlgorithm<Author, DefaultEdge> spa = new DijkstraShortestPath<>(this.grafo);
 		
-		gp = spa.getPath(a1, a2);
+		path = spa.getPath(aS, aD);
+//		path.getEdgeList();
+		List<Author> autoriConnessi = this.path.getVertexList();
 		
-		System.out.println("elenco di co-autori collegati: " + gp.toString() + "\n");
+		System.out.println("elenco di co-autori collegati: " + path.getVertexList() + "\n");
+		
+		return autoriConnessi;
 		
 		
-
+	
 	}
 	
 	
-	//PER TEST MODEL
-	public void getShortestPath(int aUno, int aDue) {
+	//PER TEST MODEL - metodo bovino con un for con indice i
+	public List<Author> getShortestPath(int aUno, int aDue) {
 			
 			Author a1 = this.aIdMap.getAuthorByID(aUno);
 			Author a2 = this.aIdMap.getAuthorByID(aDue);
@@ -131,11 +135,64 @@ public class Model {
 			//calcolare lo shortestPath
 			ShortestPathAlgorithm<Author, DefaultEdge> spa = new DijkstraShortestPath<>(this.grafo);
 			
-			gp = spa.getPath(a1, a2);
+			path = spa.getPath(a1, a2);
 			
-			System.out.println("elenco di co-autori collegati: " + gp.toString());
+			List<Author> autoriConnessi = this.path.getVertexList();
+
 			
-			
-	
+			System.out.println("");
+			System.out.println("elenco di co-autori collegati: " + path.getLength());//numero di archi per arrivare alla destinzazione 
+			System.out.println("");
+			System.out.println("elenco di co-autori collegati: " + path.getVertexList());
+			System.out.println("");
+
+			return autoriConnessi;
 		}
+	
+	
+	
+	public List<Paper> getArticoloInComune(Author authorSorgrnte, Author authorDestinazione) {
+		
+		List<Paper> articoliToStamp = new ArrayList<>();
+		
+		List<Author> aConnessi = this.getShortestPath(authorSorgrnte, authorDestinazione);
+		
+		
+		for(int i=0; i<aConnessi.size()-1; i++) {
+					
+					Author a1 = this.aIdMap.getAuthor(aConnessi.get(i));
+					Author a2 = this.aIdMap.getAuthor(aConnessi.get(i+1));
+					
+					Paper p = dao.getArticoloInComune(a1, a2);
+					
+					articoliToStamp.add(p);
+					
+				}
+		
+				return articoliToStamp;
+			}
+	
+	//PER TEST MODEL - metodo bovino con un for con indice i
+	public List<Paper> getArticoloInComune(int iDauthorSorgrnte, int iDauthorDestinazione) {
+		
+		List<Paper> articoliToStamp = new ArrayList<>();
+		
+		List<Author> aConnessi = this.getShortestPath(iDauthorSorgrnte, iDauthorDestinazione);
+		
+		
+		for(int i=0; i<aConnessi.size()-1; i++) {
+					
+//			if(i==)
+					Author a1 = this.aIdMap.getAuthor(aConnessi.get(i));
+					Author a2 = this.aIdMap.getAuthor(aConnessi.get(i+1));
+					
+					Paper p = dao.getArticoloInComune(a1, a2);
+					
+					articoliToStamp.add(p);
+					
+				}
+		
+		System.out.println(articoliToStamp.toString());
+		return articoliToStamp;
+			}
 }
